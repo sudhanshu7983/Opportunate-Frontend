@@ -1,6 +1,6 @@
 import { setAllAppliedJobs } from "@/redux/jobSlice";
 import { APPLICATION_API_END_POINT } from "@/utils/constant";
-import axios from "axios"
+import axios from "@/utils/axios"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -12,7 +12,7 @@ const useGetAppliedJobs = () => {
         const fetchAppliedJobs = async () => {
             if (!user) return; // Don't fetch if not logged in
             try {
-                const res = await axios.get(`${APPLICATION_API_END_POINT}/get`, {withCredentials:true});
+                const res = await axios.get(`${APPLICATION_API_END_POINT}/get`);
                 if(res.data.success){
                     dispatch(setAllAppliedJobs(res.data.application));
                 }
